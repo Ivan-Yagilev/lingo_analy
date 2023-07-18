@@ -1,4 +1,5 @@
 import os
+import random
 
 
 def load_training_data(
@@ -22,3 +23,11 @@ def load_training_data(
                             }
                         }
                         reviews.append((text, spacy_label))
+    random.shuffle(reviews)
+    if limit:
+        reviews = reviews[:limit]
+    split = int(len(reviews) * split)
+    return reviews[:split], reviews[split:]
+
+
+# print(load_training_data(split=0.8, limit=0)[1][100])
