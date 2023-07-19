@@ -36,7 +36,7 @@ def train_model(
     iterations: int = 20
 ) -> None:
     # Строим конвейер
-    nlp = spacy.load("ru_core_news_sm")
+    nlp = spacy.load("ru_core_news_md")
     if "textcat" not in nlp.pipe_names:
         textcat = nlp.create_pipe(
             "textcat", config={"architecture": "simple_cnn"}
@@ -90,5 +90,5 @@ def train_model(
 
 
 if __name__ == "__main__":
-    train, test = load_training_data(limit=5000)
+    train, test = load_training_data(limit=6350)
     train_model(train, test, iterations=10)
