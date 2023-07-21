@@ -1,7 +1,7 @@
 import spacy
 
 
-def test_model(input_data: str):
+def use_model(input_data: str):
     # Загружаем сохраненную модель
     loaded_model = spacy.load("model_artifacts")
     parsed_text = loaded_model(input_data)
@@ -12,11 +12,4 @@ def test_model(input_data: str):
     else:
         prediction = "Негативный текст"
         score = parsed_text.cats["neg"]
-    return f"\nОригинальный текст: {input_data}\n\
-Предсказание: {prediction}\n\
-Score: {score:.3f}"
-
-
-if __name__ == "__main__":
-    TEST_REVIEW = "test"
-    print(test_model(input_data=TEST_REVIEW))
+    return f"Предсказание: {prediction}\nС вероятностью: {score:.3f}"
