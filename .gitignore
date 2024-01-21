@@ -1,0 +1,7 @@
+env
+Datasets
+__pycache__
+ru_core_news_md-2.3.0.tar.gz
+model_artifacts
+.vscode
+aclImdb

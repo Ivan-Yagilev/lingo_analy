@@ -1,0 +1,4 @@
+spacy==2.3.5
+pandas
+fastapi==0.97.0
+uvicorn==0.22.0
