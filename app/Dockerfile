@@ -1,9 +1,20 @@
-FROM python:3.8
+# Стадия 1: Установка зависимостей
+FROM python:3.9 as builder
 
-COPY ./requirements.txt /app/requirements.txt
+WORKDIR /install
 
-RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
+COPY requirements.txt .
+RUN pip install --prefix=/install -r requirements.txt
 
-COPY ./app /app
+# Стадия 2: Финальный образ
+FROM python:3.9-slim
 
-CMD [ "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80" ]
+COPY --from=builder /install /usr/local
+
+WORKDIR /app
+
+COPY . .
+
+EXPOSE 8080
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]

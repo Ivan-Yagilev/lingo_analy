@@ -4,6 +4,6 @@ from models import Input
 
 app = FastAPI()
 
-@app.get("/emotion")
+@app.get("/")
 def emotion(input: Input):
     return use_model(input.input_text)
